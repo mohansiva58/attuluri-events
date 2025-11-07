@@ -46,8 +46,8 @@ export function HeroSection() {
         <div className="hidden lg:block flex-1">
           <div className="relative w-full aspect-square">
             <img
-              src="https://tse1.mm.bing.net/th/id/OIP.AnSe4olYI8XA1Bvo7ypU0AHaEK?pid=Api&P=0&h=180"
-              alt="Cinematic event setup"
+              src="https://wallpaperbat.com/img/902965-corporate-event-wallpaper.jpg"
+              alt="atluri events image"
               className="w-full h-full object-cover rounded-2xl shadow-2xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 to-transparent rounded-2xl"></div>
