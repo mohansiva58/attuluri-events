@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { ChevronRight } from "lucide-react"
+import { ArrowUpRight, X } from "lucide-react"
 
 const services = [
   {
@@ -136,22 +136,60 @@ export function ServicesMenu() {
   }
 
   return (
-    <section className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20" style={{ background: "oklch(0.07 0.01 280)" }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {services.map((service) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: "oklch(0.78 0.16 82 / 0.1)" }}>
+          {services.map((service, i) => (
             <button
               key={service.id}
               onClick={() => setSelectedService(service)}
-              className="group text-left p-8 bg-card border border-border rounded-xl hover:border-primary hover:shadow-lg transition"
+              className="group text-left p-8 transition-all duration-500 relative"
+              style={{ background: "oklch(0.07 0.01 280)" }}
             >
-              <div className="text-5xl mb-4 group-hover:scale-110 transition">{service.icon}</div>
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-2">{service.title}</h3>
-              <p className="text-muted-foreground mb-4">{service.shortDesc}</p>
-              <div className="inline-flex items-center gap-2 text-primary font-semibold opacity-0 group-hover:opacity-100 transition">
-                Explore <ChevronRight size={20} />
+              {/* Hover background */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: "linear-gradient(135deg, oklch(0.78 0.16 82 / 0.05) 0%, transparent 100%)" }}
+              />
+              {/* Number */}
+              <div
+                className="absolute top-5 right-6 font-serif text-5xl font-bold opacity-5 group-hover:opacity-10 transition-opacity duration-500 select-none"
+                style={{ color: "oklch(0.78 0.16 82)", fontFamily: "Cormorant Garamond, serif" }}
+              >
+                {String(i + 1).padStart(2, "0")}
               </div>
+
+              <div className="text-4xl mb-5 transition-transform duration-300 group-hover:scale-110 origin-left">
+                {service.icon}
+              </div>
+              <h3
+                className="font-serif font-semibold text-xl mb-2 transition-colors duration-300"
+                style={{
+                  color: "oklch(0.92 0.01 60)",
+                  fontFamily: "Cormorant Garamond, serif",
+                }}
+              >
+                {service.title}
+              </h3>
+              <p
+                className="text-sm mb-5 leading-relaxed"
+                style={{ color: "oklch(0.55 0.01 60)", fontFamily: "Jost, sans-serif", fontWeight: 300 }}
+              >
+                {service.shortDesc}
+              </p>
+              <div
+                className="flex items-center gap-2 text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300"
+                style={{ color: "oklch(0.78 0.16 82)", letterSpacing: "0.1em" }}
+              >
+                <span>EXPLORE</span>
+                <ArrowUpRight size={14} />
+              </div>
+              {/* Gold bottom line */}
+              <div
+                className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500"
+                style={{ background: "linear-gradient(90deg, oklch(0.78 0.16 82), transparent)" }}
+              />
             </button>
           ))}
         </div>
@@ -160,79 +198,126 @@ export function ServicesMenu() {
       {/* Service Detail Modal */}
       {selectedService && (
         <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "oklch(0 0 0 / 0.85)", backdropFilter: "blur(8px)" }}
           onClick={() => setSelectedService(null)}
         >
           <div
-            className="bg-background max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-2xl p-8"
+            className="max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+            style={{
+              background: "oklch(0.09 0.01 280)",
+              border: "1px solid oklch(0.78 0.16 82 / 0.2)",
+              borderRadius: "4px",
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
+            {/* Gold top border */}
+            <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82), transparent)" }} />
+
+            {/* Close */}
             <button
               onClick={() => setSelectedService(null)}
-              className="float-right text-3xl text-muted-foreground hover:text-foreground transition"
+              className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center transition-all duration-300 z-10"
+              style={{ border: "1px solid oklch(0.78 0.16 82 / 0.3)", borderRadius: "2px", color: "oklch(0.6 0.01 60)" }}
             >
-              ✕
+              <X size={16} />
             </button>
 
-            {/* Header */}
-            <div className="mb-8">
-              <div className="text-6xl mb-4">{selectedService.icon}</div>
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground mb-2">
-                {selectedService.title}
-              </h2>
-              <p className="text-xl text-accent font-semibold">{selectedService.pricing}</p>
-            </div>
-
-            {/* Image */}
-            <img
-              src={selectedService.image || "/placeholder.svg"}
-              alt={selectedService.title}
-              className="w-full h-80 object-cover rounded-xl mb-8"
-            />
-
-            {/* Description */}
-            <p className="text-lg text-foreground leading-relaxed mb-8">{selectedService.fullDescription}</p>
-
-            {/* Features */}
-            <div className="mb-12">
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-6">Key Features</h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                {selectedService.features.map((feature, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-foreground">{feature}</span>
-                  </div>
-                ))}
+            <div className="p-8 lg:p-12">
+              {/* Header */}
+              <div className="mb-8">
+                <div className="text-5xl mb-4">{selectedService.icon}</div>
+                <h2
+                  className="font-serif font-bold mb-2"
+                  style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontFamily: "Cormorant Garamond, serif", color: "oklch(0.95 0.01 60)" }}
+                >
+                  {selectedService.title}
+                </h2>
+                <p className="section-label" style={{ color: "oklch(0.78 0.16 82)", fontSize: "0.7rem" }}>
+                  {selectedService.pricing}
+                </p>
               </div>
-            </div>
 
-            {/* Featured Portfolio */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">Featured in Events</h3>
-              <div className="flex flex-wrap gap-3">
-                {selectedService.portfolio.map((event, i) => (
-                  <span key={i} className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold">
-                    {event}
-                  </span>
-                ))}
+              {/* Image */}
+              <div className="relative mb-8 overflow-hidden" style={{ borderRadius: "4px", height: "280px" }}>
+                <img
+                  src={selectedService.image || "/placeholder.svg"}
+                  alt={selectedService.title}
+                  className="w-full h-full object-cover"
+                  style={{ filter: "brightness(0.7) saturate(0.8)" }}
+                />
+                <div className="absolute top-3 left-3 w-6 h-6" style={{ borderTop: "1.5px solid oklch(0.78 0.16 82)", borderLeft: "1.5px solid oklch(0.78 0.16 82)" }} />
+                <div className="absolute bottom-3 right-3 w-6 h-6" style={{ borderBottom: "1.5px solid oklch(0.78 0.16 82)", borderRight: "1.5px solid oklch(0.78 0.16 82)" }} />
               </div>
-            </div>
 
-            {/* CTA */}
-            <div className="flex gap-4">
-              <button
-                onClick={() => {
-                  handleBookService(selectedService.bookingId)
-                  setSelectedService(null)
-                }}
-                className="flex-1 bg-primary text-primary-foreground py-3 rounded-lg hover:opacity-90 transition font-semibold"
+              {/* Description */}
+              <p
+                className="text-base leading-relaxed mb-8"
+                style={{ color: "oklch(0.65 0.01 60)", fontFamily: "Jost, sans-serif", fontWeight: 300 }}
               >
-                Book This Service
-              </button>
-              <button className="flex-1 border-2 border-primary text-primary py-3 rounded-lg hover:bg-primary/10 transition font-semibold">
-                Get Quote
-              </button>
+                {selectedService.fullDescription}
+              </p>
+
+              {/* Features */}
+              <div className="mb-10">
+                <h3
+                  className="font-serif font-semibold text-xl mb-5"
+                  style={{ color: "oklch(0.9 0.01 60)", fontFamily: "Cormorant Garamond, serif" }}
+                >
+                  Key Features
+                </h3>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {selectedService.features.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="w-1 h-4 mt-0.5 flex-shrink-0" style={{ background: "oklch(0.78 0.16 82)", borderRadius: "999px" }} />
+                      <span className="text-sm" style={{ color: "oklch(0.65 0.01 60)", fontFamily: "Jost, sans-serif" }}>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Portfolio tags */}
+              <div className="mb-10">
+                <h3
+                  className="font-serif font-semibold text-lg mb-4"
+                  style={{ color: "oklch(0.9 0.01 60)", fontFamily: "Cormorant Garamond, serif" }}
+                >
+                  Featured Events
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedService.portfolio.map((event, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-3 py-1.5"
+                      style={{
+                        color: "oklch(0.78 0.16 82)",
+                        border: "1px solid oklch(0.78 0.16 82 / 0.25)",
+                        borderRadius: "2px",
+                        fontFamily: "Jost, sans-serif",
+                        letterSpacing: "0.05em",
+                      }}
+                    >
+                      {event}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button
+                  onClick={() => {
+                    handleBookService(selectedService.bookingId)
+                    setSelectedService(null)
+                  }}
+                  className="btn-gold flex-1"
+                >
+                  Book This Service
+                </button>
+                <button className="btn-gold-outline flex-1">
+                  Get Custom Quote
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -5,24 +5,45 @@ import { Footer } from "@/components/footer"
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen" style={{ background: "oklch(0.06 0.01 280)" }}>
       <Header />
-      <section className="pt-20 pb-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">Get in Touch</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Have questions about your event? Want to discuss your vision? We're here to help make your celebration
-              unforgettable.
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-12 mb-20">
+      {/* Page Hero */}
+      <section className="relative pt-40 pb-24 overflow-hidden" style={{ background: "oklch(0.06 0.01 280)" }}>
+        <div className="absolute inset-0 pointer-events-none">
+          <div style={{ background: "radial-gradient(ellipse at 40% 0%, oklch(0.78 0.16 82 / 0.07) 0%, transparent 60%)" }} className="absolute inset-0" />
+        </div>
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82 / 0.5), transparent)" }} />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82))" }} />
+            <span className="section-label">Reach Out</span>
+          </div>
+          <h1
+            className="font-serif font-bold leading-tight mb-6"
+            style={{ fontSize: "clamp(3rem, 7vw, 5rem)", fontFamily: "Cormorant Garamond, serif", color: "oklch(0.95 0.01 60)" }}
+          >
+            Let's Plan Your
+            <br />
+            <span className="text-gold-gradient">Perfect Event</span>
+          </h1>
+          <p className="text-lg max-w-2xl" style={{ color: "oklch(0.6 0.01 60)", fontFamily: "Jost, sans-serif", fontWeight: 300 }}>
+            Have a vision? We're here to make it reality. Reach out and let's begin crafting your unforgettable celebration.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Grid */}
+      <section className="pb-32" style={{ background: "oklch(0.06 0.01 280)" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12">
             <ContactFormWeb3 />
             <SocialLinks />
           </div>
         </div>
       </section>
+
       <Footer />
     </main>
   )

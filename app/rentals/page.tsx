@@ -5,30 +5,40 @@ import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "Event Rentals & Pay-for-Use Items | Attuluri Events",
-  description:
-    "Rent premium event equipment, decor, and furniture. Affordable pay-for-use items for weddings, parties, and corporate events. Lighting systems, chairs, tables, sound equipment.",
-  keywords:
-    "event rentals, party equipment rental, wedding decor rental, DJ equipment rent, event furniture, pay per use, affordable event items",
-  openGraph: {
-    title: "Event Rentals - Attuluri Events",
-    description: "Premium rental items for your events",
-    type: "website",
-  },
+  description: "Rent premium event equipment, decor, and furniture. Affordable pay-for-use items for weddings, parties, and corporate events.",
+  keywords: "event rentals, party equipment rental, wedding decor rental, DJ equipment rent, event furniture, pay per use",
 }
 
 export default function RentalsPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen" style={{ background: "oklch(0.06 0.01 280)" }}>
       <Header />
-      <div className="pt-32 pb-12 px-4 bg-gradient-to-r from-secondary/20 to-primary/20">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">Event Rentals</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Affordable, high-quality equipment and decor items available for rent. Choose what you need and pay only for
-            what you use.
+
+      {/* Page Hero */}
+      <section className="relative pt-40 pb-24 overflow-hidden" style={{ background: "oklch(0.06 0.01 280)" }}>
+        <div className="absolute inset-0 pointer-events-none">
+          <div style={{ background: "radial-gradient(ellipse at 70% 0%, oklch(0.78 0.16 82 / 0.06) 0%, transparent 60%)" }} className="absolute inset-0" />
+        </div>
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82 / 0.5), transparent)" }} />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82))" }} />
+            <span className="section-label">Pay-For-Use</span>
+          </div>
+          <h1
+            className="font-serif font-bold leading-tight mb-6"
+            style={{ fontSize: "clamp(3rem, 7vw, 5rem)", fontFamily: "Cormorant Garamond, serif", color: "oklch(0.95 0.01 60)" }}
+          >
+            Premium Event
+            <br />
+            <span className="text-gold-gradient">Rentals</span>
+          </h1>
+          <p className="text-lg max-w-2xl" style={{ color: "oklch(0.6 0.01 60)", fontFamily: "Jost, sans-serif", fontWeight: 300 }}>
+            High-quality equipment, decor, and furniture available for rent. Choose exactly what you need — pay only for what you use.
           </p>
         </div>
-      </div>
+      </section>
 
       <RentalsGallery />
       <Footer />

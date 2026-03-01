@@ -7,29 +7,40 @@ import { Footer } from "@/components/footer"
 export const metadata: Metadata = {
   title: "Premium Event Services | Attuluri Events",
   description:
-    "Explore our comprehensive event services: cinematic setups, flower decorations, DJ & lighting systems, fireworks displays, 4K photography, and catering. Professional event solutions tailored to your celebration.",
-  keywords:
-    "event services, wedding services, party decoration, DJ services, videography, catering services, event setup, professional event planning",
+    "Explore our comprehensive event services: cinematic setups, flower decorations, DJ & lighting systems, fireworks displays, 4K photography, and catering.",
 }
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen" style={{ background: "oklch(0.06 0.01 280)" }}>
       <Header />
-      <div className="pt-32 pb-12 px-4 bg-gradient-to-br from-primary/20 via-background to-accent/20">
-        <div className="max-w-7xl mx-auto text-center">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-            ✨ Premium Services
-          </span>
-          <h1 className="text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6 text-balance">
-            Comprehensive Event Solutions
+
+      {/* Page Hero */}
+      <section className="relative pt-40 pb-24 overflow-hidden" style={{ background: "oklch(0.06 0.01 280)" }}>
+        <div className="absolute inset-0 pointer-events-none">
+          <div style={{ background: "radial-gradient(ellipse at 60% 0%, oklch(0.78 0.16 82 / 0.07) 0%, transparent 60%)" }} className="absolute inset-0" />
+        </div>
+        {/* Thin top gold line */}
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82 / 0.5), transparent)" }} />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82))" }} />
+            <span className="section-label">What We Offer</span>
+          </div>
+          <h1
+            className="font-serif font-bold leading-tight mb-6"
+            style={{ fontSize: "clamp(3rem, 7vw, 5rem)", fontFamily: "Cormorant Garamond, serif", color: "oklch(0.95 0.01 60)" }}
+          >
+            Comprehensive Event
+            <br />
+            <span className="text-gold-gradient">Solutions</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Transform your celebration into an unforgettable cinematic experience with our award-winning services. From
-            stunning setups to immersive entertainment, we handle every detail.
+          <p className="text-lg max-w-2xl" style={{ color: "oklch(0.6 0.01 60)", fontFamily: "Jost, sans-serif", fontWeight: 300 }}>
+            From cinematic stage designs to exquisite catering — every detail executed with unparalleled artistry and precision.
           </p>
         </div>
-      </div>
+      </section>
 
       <ServicesMenu />
       <ServiceReviews />

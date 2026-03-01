@@ -1,144 +1,241 @@
-import { Award, Users, Sparkles } from "lucide-react"
-
+import { Award, Users, Sparkles, Quote } from "lucide-react"
+import Link from "next/link"
 
 const stats = [
-  { icon: Award, label: "Events Delivered", value: "500+" },
+  { icon: Award, label: "Events Crafted", value: "500+" },
   { icon: Users, label: "Happy Clients", value: "1000+" },
   { icon: Sparkles, label: "Years of Excellence", value: "15+" },
 ]
 
-// Images in Next.js `public/` should be referenced by URL (e.g. '/1.jpeg'),
-// not imported from a `./public/...` relative path. Use string paths instead.
 const teamMembers = [
   { name: "RANGARAO ATLURI", role: "Founder & Chairman", image: "/1.jpeg" },
   { name: "PRASAD BABU UNNAM", role: "Event Manager", image: "/2.png" },
-  { name: "G RAVI TEJA ", role: " Event Co-Ordinater", image: "/3.png" },
-  // { name: "Ananya Sharma", role: "Catering & Hospitality Manager", image: "/4.png" },
+  { name: "G RAVI TEJA", role: "Event Co-Ordinator", image: "/3.png" },
 ]
+
+const values = [
+  { number: "01", title: "Excellence", desc: "We never compromise on quality or meticulous attention to every detail." },
+  { number: "02", title: "Innovation", desc: "We constantly explore new ideas and groundbreaking creative approaches." },
+  { number: "03", title: "Reliability", desc: "Our clients trust us completely to deliver on every single promise." },
+  { number: "04", title: "Passion", desc: "We love what we do, and it shines through in every event we craft." },
+]
+
+function SectionDivider() {
+  return (
+    <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82 / 0.15), transparent)" }} />
+  )
+}
 
 export function About() {
   return (
-    <section className="pt-20 pb-20 bg-background">
-      {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">About Attuluri Events</h1>
-            <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-              At Attuluri Events, we believe every celebration deserves to be extraordinary. Since 2009, we've been
-              transforming visions into reality, creating cinematic experiences that forge lifelong memories.
-            </p>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              We're not just event planners—we're memory makers, storytellers, and artists dedicated to crafting
-              celebrations that transcend the ordinary.
-            </p>
-            <button className="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:opacity-90 transition font-semibold">
-              Schedule a Consultation
-            </button>
-          </div>
+    <div style={{ background: "oklch(0.07 0.01 280)" }}>
 
-          <div className="relative">
-            <img
-              src="/elegant-wedding-setup-with-flowers-and-lights.jpg"
-              alt="Attuluri Events Team"
-              className="w-full rounded-xl shadow-2xl"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent rounded-xl"></div>
+      {/* Story Section */}
+      <section className="py-28">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <div className="flex items-center gap-4 mb-8">
+                <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82))" }} />
+                <span className="section-label">Since 2009</span>
+              </div>
+              <h2
+                className="font-serif font-bold leading-tight mb-8"
+                style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)", fontFamily: "Cormorant Garamond, serif", color: "oklch(0.95 0.01 60)" }}
+              >
+                We Are <span className="text-gold-gradient">Memory Makers</span>,<br />Not Just Event Planners
+              </h2>
+
+              <div className="space-y-5 mb-10" style={{ color: "oklch(0.6 0.01 60)", fontFamily: "Jost, sans-serif", fontWeight: 300, lineHeight: 1.8 }}>
+                <p>
+                  Founded in 2009, Attuluri Events was born from a simple dream: to create celebrations that feel like cinematic masterpieces. What started as a boutique event planning service has grown into one of the region's most trusted names in premium event management.
+                </p>
+                <p>
+                  Every event we handle is treated as a unique story. We don't follow templates — we create bespoke experiences that reflect the personality, values, and dreams of our clients.
+                </p>
+              </div>
+
+              {/* Quote */}
+              <div
+                className="relative p-6 mb-10"
+                style={{
+                  background: "oklch(0.78 0.16 82 / 0.05)",
+                  border: "1px solid oklch(0.78 0.16 82 / 0.15)",
+                  borderLeft: "3px solid oklch(0.78 0.16 82)",
+                  borderRadius: "2px",
+                }}
+              >
+                <Quote size={20} className="mb-3" style={{ color: "oklch(0.78 0.16 82 / 0.5)" }} />
+                <p
+                  className="font-serif italic text-lg"
+                  style={{ color: "oklch(0.82 0.01 60)", fontFamily: "Cormorant Garamond, serif", fontWeight: 400 }}
+                >
+                  "A celebration is not just an event; it's a memory that lasts a lifetime."
+                </p>
+              </div>
+
+              <Link href="/book-now" className="btn-gold">
+                Schedule a Consultation
+              </Link>
+            </div>
+
+            <div className="relative">
+              <img
+                src="/elegant-wedding-setup-with-flowers-and-lights.jpg"
+                alt="Attuluri Events"
+                className="w-full object-cover"
+                style={{ borderRadius: "4px", height: "560px", filter: "brightness(0.75) saturate(0.8)" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: "linear-gradient(to top, oklch(0.07 0.01 280 / 0.6) 0%, transparent 60%)",
+                  borderRadius: "4px",
+                }}
+              />
+              {/* Gold corner accents */}
+              <div className="absolute top-4 left-4 w-8 h-8" style={{ borderTop: "2px solid oklch(0.78 0.16 82)", borderLeft: "2px solid oklch(0.78 0.16 82)" }} />
+              <div className="absolute bottom-4 right-4 w-8 h-8" style={{ borderBottom: "2px solid oklch(0.78 0.16 82)", borderRight: "2px solid oklch(0.78 0.16 82)" }} />
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Stats Section */}
-      <div className="bg-secondary/10 py-16 mb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
+      <SectionDivider />
+
+      {/* Stats */}
+      <section className="py-20" style={{ background: "oklch(0.06 0.01 280)" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-px" style={{ background: "oklch(0.78 0.16 82 / 0.1)" }}>
             {stats.map((stat, i) => {
               const Icon = stat.icon
               return (
-                <div key={i} className="text-center">
-                  <div className="mb-4 flex justify-center">
-                    <div className="p-4 bg-primary/10 rounded-full">
-                      <Icon className="text-primary" size={32} />
-                    </div>
+                <div key={i} className="text-center py-14 px-8" style={{ background: "oklch(0.06 0.01 280)" }}>
+                  <div
+                    className="w-12 h-12 flex items-center justify-center mx-auto mb-6"
+                    style={{ border: "1px solid oklch(0.78 0.16 82 / 0.3)", borderRadius: "2px" }}
+                  >
+                    <Icon size={20} style={{ color: "oklch(0.78 0.16 82)" }} />
                   </div>
-                  <p className="text-5xl font-serif font-bold text-foreground mb-2">{stat.value}</p>
-                  <p className="text-lg text-muted-foreground">{stat.label}</p>
+                  <div className="stat-number mb-2">{stat.value}</div>
+                  <p className="section-label" style={{ fontSize: "0.65rem", color: "oklch(0.55 0.01 60)" }}>{stat.label}</p>
                 </div>
               )
             })}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Our Story */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="max-w-3xl">
-          <h2 className="text-4xl font-serif font-bold text-foreground mb-8">Our Story</h2>
-          <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-            <p>
-              Founded in 2009 by Rajesh Attuluri, Attuluri Events was born from a simple dream: to create celebrations
-              that feel like cinematic masterpieces. What started as a boutique event planning service has grown into
-              one of the region's most trusted names in premium event management.
-            </p>
-            <p>
-              Every event we handle is treated as a unique story. We don't follow templates—we create bespoke
-              experiences that reflect the personality, values, and dreams of our clients. From intimate gatherings to
-              grand celebrations with thousands of guests, we bring the same dedication and artistry to every occasion.
-            </p>
-            <p>
-              Our philosophy is simple: "A celebration is not just an event; it's a memory that lasts a lifetime." This
-              belief drives us to innovate, to invest in the best talent and technology, and to never settle for
-              anything less than extraordinary.
-            </p>
-            <p>
-              Today, with a team of 50+ dedicated professionals spanning event planning, design, technical production,
-              catering, and photography, we continue to set new standards in the events industry.
-            </p>
-          </div>
-        </div>
-      </div>
+      <SectionDivider />
 
       {/* Values */}
-      <div className="bg-secondary/5 py-20 mb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-serif font-bold text-foreground mb-12 text-center">Our Core Values</h2>
+      <section className="py-28">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82))" }} />
+              <span className="section-label">What Drives Us</span>
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, oklch(0.78 0.16 82), transparent)" }} />
+            </div>
+            <h2
+              className="font-serif font-bold"
+              style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontFamily: "Cormorant Garamond, serif", color: "oklch(0.95 0.01 60)" }}
+            >
+              Our Core <span className="text-gold-gradient">Values</span>
+            </h2>
+          </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { title: "Excellence", desc: "We never compromise on quality or attention to detail." },
-              { title: "Innovation", desc: "We constantly explore new ideas and creative approaches." },
-              { title: "Reliability", desc: "Our clients trust us to deliver on every promise." },
-              { title: "Passion", desc: "We love what we do and it shows in every event." },
-            ].map((value, i) => (
-              <div key={i} className="text-center">
-                <h3 className="text-2xl font-serif font-bold text-foreground mb-3">{value.title}</h3>
-                <p className="text-muted-foreground">{value.desc}</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: "oklch(0.78 0.16 82 / 0.1)" }}>
+            {values.map((value, i) => (
+              <div
+                key={i}
+                className="group relative p-8 transition-all duration-500"
+                style={{ background: "oklch(0.07 0.01 280)" }}
+              >
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{ background: "linear-gradient(135deg, oklch(0.78 0.16 82 / 0.04) 0%, transparent 100%)" }}
+                />
+                <div
+                  className="text-5xl font-serif font-bold mb-6 opacity-10 group-hover:opacity-20 transition-opacity"
+                  style={{ color: "oklch(0.78 0.16 82)", fontFamily: "Cormorant Garamond, serif" }}
+                >
+                  {value.number}
+                </div>
+                <h3
+                  className="font-serif font-semibold text-xl mb-3"
+                  style={{ color: "oklch(0.9 0.01 60)", fontFamily: "Cormorant Garamond, serif" }}
+                >
+                  {value.title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "oklch(0.55 0.01 60)", fontFamily: "Jost, sans-serif", fontWeight: 300 }}>
+                  {value.desc}
+                </p>
+                <div
+                  className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500"
+                  style={{ background: "linear-gradient(90deg, oklch(0.78 0.16 82), transparent)" }}
+                />
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      <SectionDivider />
 
       {/* Team */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-serif font-bold text-foreground mb-12 text-center">Meet Our Team</h2>
+      <section className="py-28" style={{ background: "oklch(0.06 0.01 280)" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.16 82))" }} />
+              <span className="section-label">The People Behind the Magic</span>
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, oklch(0.78 0.16 82), transparent)" }} />
+            </div>
+            <h2
+              className="font-serif font-bold"
+              style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontFamily: "Cormorant Garamond, serif", color: "oklch(0.95 0.01 60)" }}
+            >
+              Meet Our <span className="text-gold-gradient">Expert Team</span>
+            </h2>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, i) => (
-            <div key={i} className="text-center group">
-              <div className="mb-4 overflow-hidden rounded-xl">
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {teamMembers.map((member, i) => (
+              <div key={i} className="group relative overflow-hidden" style={{ borderRadius: "4px" }}>
                 <img
                   src={member.image || "/placeholder.svg"}
                   alt={member.name}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
+                  className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ height: "360px", filter: "brightness(0.65) saturate(0.7)" }}
                 />
+                {/* Overlay */}
+                <div
+                  className="absolute inset-0 transition-all duration-500"
+                  style={{
+                    background: "linear-gradient(to top, oklch(0.04 0.01 280 / 0.95) 0%, oklch(0.04 0.01 280 / 0.3) 50%, transparent 100%)",
+                  }}
+                />
+                {/* Gold corner accents */}
+                <div className="absolute top-3 left-3 w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ borderTop: "1.5px solid oklch(0.78 0.16 82)", borderLeft: "1.5px solid oklch(0.78 0.16 82)" }} />
+                <div className="absolute bottom-3 right-3 w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ borderBottom: "1.5px solid oklch(0.78 0.16 82)", borderRight: "1.5px solid oklch(0.78 0.16 82)" }} />
+
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3
+                    className="font-serif font-bold text-lg mb-1"
+                    style={{ color: "oklch(0.95 0.01 60)", fontFamily: "Cormorant Garamond, serif" }}
+                  >
+                    {member.name}
+                  </h3>
+                  <p className="section-label" style={{ fontSize: "0.6rem", color: "oklch(0.78 0.16 82 / 0.8)" }}>
+                    {member.role}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-serif font-bold text-foreground mb-1">{member.name}</h3>
-              <p className="text-accent font-semibold text-sm">{member.role}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }
